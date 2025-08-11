@@ -19,4 +19,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/api/sessions/{id}/contacts', [WaController::class, 'contacts']);
 });
 
-require __DIR__.'/auth.php';
+if (file_exists(__DIR__.'/auth.php')) {
+    require __DIR__.'/auth.php';
+}

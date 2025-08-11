@@ -1,4 +1,5 @@
-import { Client, LocalAuth, Buttons, List } from 'whatsapp-web.js';
+import pkg from 'whatsapp-web.js';
+const { Client, LocalAuth, Buttons, List } = pkg;
 import QRCode from 'qrcode';
 import { v4 as uuidv4 } from 'uuid';
 import { log } from './logger.js';
@@ -171,7 +172,8 @@ export class SessionManager {
           await client.sendMessage(to, String(item.message));
         }
         else if (item.type === 'media' && (item.mediaUrl || item.base64)) {
-          const { MessageMedia } = await import('whatsapp-web.js');
+          const pkg = await import('whatsapp-web.js');
+          const { MessageMedia } = pkg.default;
           let mm = null;
           if (item.base64) {
             mm = new MessageMedia(item.mimetype || 'application/octet-stream', item.base64, item.filename || 'file');

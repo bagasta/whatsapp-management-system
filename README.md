@@ -48,8 +48,18 @@ curl -X POST http://localhost:3001/api/sessions/my-bot/send-message   -H 'Conten
 **Group filter**  
 Incoming **group** messages are forwarded to the webhook **only if the bot is mentioned** (e.g., `@YourBot`).
 
-**Image compression**  
+**Image compression**
 Incoming image media is downsized via **sharp** to max width 1280 and JPEG quality 70 (configurable).
+
+**Database (PostgreSQL via Prisma)**
+The backend can connect to a PostgreSQL database using [Prisma](https://www.prisma.io/).
+Set `DATABASE_URL` in `backend/.env` and use the provided schema in `backend/prisma/schema.prisma`:
+
+```bash
+cd backend
+npm install @prisma/client prisma
+npx prisma db push   # create tables in the database
+```
 
 ---
 
