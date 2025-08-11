@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  wa-api:
+    build: .
+    container_name: wa-api
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    restart: unless-stopped
